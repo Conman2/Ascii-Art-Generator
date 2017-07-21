@@ -47,33 +47,42 @@ def Reducing_Pallet(gray_scale):
      counter = 0
      while True:
          if gray_scale < counter:
-             gray_scale = counter - 50
+             gray_scale = counter - 25
              return gray_scale
 
-         counter += 50
+         counter += 25
 
 # Converts Grayscale to Ascii
 def Ascii(The_Matrix, img_xrange, img_yrange):
-    """Takes a 2D array, an x range for the image width, and y range for 
+    """Takes a 2D array, an x range for the image width, and y range for
        the image height, and returns a mutated 2D list, with
        original values replaced by ASCII values of characters."""
     for i in img_xrange:
         for j in img_yrange:
             if The_Matrix[i][j] == 0:
-                The_Matrix[i][j] = ord('#')
+                The_Matrix[i][j] = ord('@')
+            elif The_Matrix[i][j] == 25:
+                The_Matrix[i][j] = ord('%')
             elif The_Matrix[i][j] == 50:
-                The_Matrix[i][j] = ord('=')
-            elif The_Matrix[i][j] == 100:
+                The_Matrix[i][j] = ord('#')
+            elif The_Matrix[i][j] == 75:
                 The_Matrix[i][j] = ord('+')
+            elif The_Matrix[i][j] == 100:
+                The_Matrix[i][j] = ord('=')
+            elif The_Matrix[i][j] == 125:
+                The_Matrix[i][j] = ord('~')
             elif The_Matrix[i][j] == 150:
-                The_Matrix[i][j] = ord(',')
+                The_Matrix[i][j] = ord(':')
+            elif The_Matrix[i][j] == 175:
+                The_Matrix[i][j] = ord('~')
             elif The_Matrix[i][j] == 200:
+                The_Matrix[i][j] = ord(',')
+            elif The_Matrix[i][j] == 225:
                 The_Matrix[i][j] = ord('.')
             elif The_Matrix[i][j] == 250:
                 The_Matrix[i][j] = ord(' ')
 
     return The_Matrix
-
 
 def print_ascii_image(matrix):
     """Takes a 2D matrix of ASCII values as input and prints out an image
@@ -85,8 +94,6 @@ def print_ascii_image(matrix):
             else:
                 print(chr(row[i]))
 
-
-
 #The Loops
 for ii in img_xrange:
     for jj in img_yrange:
@@ -95,9 +102,7 @@ for ii in img_xrange:
 
 The_Matrix = Ascii(The_Matrix, img_xrange, img_yrange)
 
-
 print_ascii_image(The_Matrix)
-
 
 #print(The_Matrix)
 #img.save(os.path.join(file_path, 'tester_update.png'))
