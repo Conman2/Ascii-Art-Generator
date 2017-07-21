@@ -5,14 +5,25 @@ file_path = os.path.join(os.path.abspath(os.path.dirname(__file__)), 'Image')
 
 img = Image.open(os.path.join(file_path, 'tester.jpg'))
 pixel = img.load()
-img_width, img_height = img.size
 
+(img_width, img_height) = img.size
 cell_size = 1
 
+#Resizing the Image
+crop_x = (img_width//cell_size)*cell_size
+crop_y = (img_height//cell_size)*cell_size
+img.crop = ((0, 0, crop_x, crop_y))
+
+#Updating the Images Size
+img_width = crop_x
+img_height = crop_y
+
+#How many Tiles can the Image Hold
 img_xrange = range(0, img_width, cell_size)
 img_yrange = range(0, img_height, cell_size)
 
 The_Matrix = [[0 for i in range(img_width)] for j in range(img_height)]
+
 
 #Getting the Average RGB Values for each Section
 def Average_Colour(pixel_x, pixel_y):
