@@ -1,5 +1,4 @@
 from PIL import Image
-import numpy
 import os
 
 file_path = os.path.join(os.path.abspath(os.path.dirname(__file__)), 'Image')
@@ -13,7 +12,7 @@ cell_size = 1
 img_xrange = range(0, img_width, cell_size)
 img_yrange = range(0, img_height, cell_size)
 
-The_Matrix = numpy.zeros((len(img_xrange), len(img_yrange)))
+The_Matrix = [[0 for i in range(img_width)] for j in range(img_height)]
 
 #Getting the Average RGB Values for each Section
 def Average_Colour(pixel_x, pixel_y):
@@ -43,22 +42,25 @@ def Reducing_Pallet(gray_scale):
 
          counter += 50
 
-#Converts Grayscale to Ascii
+# Converts Grayscale to Ascii
 def Ascii(The_Matrix, img_xrange, img_yrange):
-    for thing5 in img_xrange:
-        for thing6 in img_yrange:
-            if The_Matrix[thing5][thing6] == 0:
-                The_Matrix[thing5][thing6] = '#'
-            elif The_Matrix[thing5][thing6] == 50:
-                The_Matrix[thing5][thing6] = '='
-            elif The_Matrix[thing5][thing6] == 100:
-                The_Matrix[thing5][thing6] = '+'
-            elif The_Matrix[thing5][thing6] == 150:
-                The_Matrix[thing5][thing6] = ','
-            elif The_Matrix[thing5][thing6] == 200:
-                The_Matrix[thing5][thing6] = '.'
-            elif The_Matrix[thing5][thing6] == 250:
-                The_Matrix[thing5][thing6] = ' '
+    """Takes a 2D array, an x range for the image width, and y range for 
+       the image height, and returns a mutated 2D list, with
+       original values replaced by ASCII values of characters."""
+    for i in img_xrange:
+        for j in img_yrange:
+            if The_Matrix[i][j] == 0:
+                The_Matrix[i][j] = ord('#')
+            elif The_Matrix[i][j] == 50:
+                The_Matrix[i][j] = ord('=')
+            elif The_Matrix[i][j] == 100:
+                The_Matrix[i][j] = ord('+')
+            elif The_Matrix[i][j] == 150:
+                The_Matrix[i][j] = ord(',')
+            elif The_Matrix[i][j] == 200:
+                The_Matrix[i][j] = ord('.')
+            elif The_Matrix[i][j] == 250:
+                The_Matrix[i][j] = ord(' ')
 
     return The_Matrix
 
@@ -70,5 +72,5 @@ for thing1 in img_xrange:
 
 The_Matrix = Ascii(The_Matrix, img_xrange, img_yrange)
 
-print(The_Matrix)
+#print(The_Matrix)
 #img.save(os.path.join(file_path, 'tester_update.png'))
