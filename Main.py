@@ -20,9 +20,9 @@ def Average_Colour(pixel_x, pixel_y):
     colour_array_green = []
     colour_array_blue = []
 
-    for thing3 in range(pixel_x*cell_size, pixel_x*cell_size + cell_size):
-        for thing4 in range(pixel_y*cell_size, pixel_y*cell_size + cell_size):
-            colour = pixel[thing3, thing4]
+    for ii in range(pixel_x*cell_size, pixel_x*cell_size + cell_size):
+        for jj in range(pixel_y*cell_size, pixel_y*cell_size + cell_size):
+            colour = pixel[ii, jj]
             colour_array_red.append(colour[0])
             colour_array_green.append(colour[1])
             colour_array_blue.append(colour[2])
@@ -65,10 +65,10 @@ def Ascii(The_Matrix, img_xrange, img_yrange):
     return The_Matrix
 
 #The Loops
-for thing1 in img_xrange:
-    for thing2 in img_yrange:
-        The_Matrix[thing1][thing2] = Average_Colour(thing1, thing2)
-        The_Matrix[thing1][thing2] = Reducing_Pallet(The_Matrix[thing1][thing2])
+for ii in img_xrange:
+    for jj in img_yrange:
+        The_Matrix[ii][jj] = Average_Colour(ii, jj)
+        The_Matrix[ii][jj] = Reducing_Pallet(The_Matrix[ii][jj])
 
 The_Matrix = Ascii(The_Matrix, img_xrange, img_yrange)
 
