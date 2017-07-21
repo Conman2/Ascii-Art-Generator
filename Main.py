@@ -3,15 +3,15 @@ import os
 
 file_path = os.path.join(os.path.abspath(os.path.dirname(__file__)), 'Image')
 
-img = Image.open(os.path.join(file_path, 'tester.jpg'))
+img = Image.open(os.path.join(file_path, 'block.png'))
 pixel = img.load()
 
 (img_width, img_height) = img.size
 cell_size = 1
 
 #Resizing the Image
-crop_x = (img_width//cell_size)*cell_size
-crop_y = (img_height//cell_size)*cell_size
+crop_x = int((img_width//cell_size)*cell_size)
+crop_y = int((img_height//cell_size)*cell_size)
 img.crop = ((0, 0, crop_x, crop_y))
 
 #Updating the Images Size
@@ -74,6 +74,19 @@ def Ascii(The_Matrix, img_xrange, img_yrange):
 
     return The_Matrix
 
+
+def print_ascii_image(matrix):
+    """Takes a 2D matrix of ASCII values as input and prints out an image
+       of ASCII characters based on matrix values."""
+    for row in matrix:
+        for i in range(len(row)):
+            if (i != len(row)-1):
+                print(chr(row[i]), end='')
+            else:
+                print(chr(row[i]))
+
+
+
 #The Loops
 for ii in img_xrange:
     for jj in img_yrange:
@@ -81,6 +94,10 @@ for ii in img_xrange:
         The_Matrix[ii][jj] = Reducing_Pallet(The_Matrix[ii][jj])
 
 The_Matrix = Ascii(The_Matrix, img_xrange, img_yrange)
+
+
+print_ascii_image(The_Matrix)
+
 
 #print(The_Matrix)
 #img.save(os.path.join(file_path, 'tester_update.png'))
