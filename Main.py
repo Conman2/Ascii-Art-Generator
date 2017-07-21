@@ -24,7 +24,6 @@ img_yrange = range(0, img_height, cell_size)
 
 The_Matrix = [[0 for i in range(img_width)] for j in range(img_height)]
 
-
 #Getting the Average RGB Values for each Section
 def Average_Colour(pixel_x, pixel_y):
     colour_array_red = []
