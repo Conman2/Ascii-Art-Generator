@@ -3,7 +3,7 @@ import os
 
 file_path = os.path.join(os.path.abspath(os.path.dirname(__file__)), 'Image')
 
-img = Image.open(os.path.join(file_path, 'block.png'))
+img = Image.open(os.path.join(file_path, 'tester.jpg'))
 pixel = img.load()
 
 (img_width, img_height) = img.size
@@ -41,45 +41,41 @@ def Average_Colour(pixel_x, pixel_y):
 
     return avg_colour
 
-#Turns the Grayscale into only five tones
-def Reducing_Pallet(gray_scale):
-    #Note Grayscale is a range from 0 to 255 (5 colour Pallet)
-     counter = 0
-     while True:
-         if gray_scale < counter:
-             gray_scale = counter - 25
-             return gray_scale
-
-         counter += 25
-
 # Converts Grayscale to Ascii
 def Ascii(The_Matrix, img_xrange, img_yrange):
-    """Takes a 2D array, an x range for the image width, and y range for
+    """ Takes a 2D array, an x range for the image width, and y range for
        the image height, and returns a mutated 2D list, with
-       original values replaced by ASCII values of characters."""
+       original values replaced by ASCII values of characters.
+       It now it standardises the colours so the full range of ASCII characters
+       are always used """
+
+    lowest  = max(max(The_Matrix))
+    highest = min(min(The_Matrix))
+    difference = lowest - highest
+
     for i in img_xrange:
         for j in img_yrange:
-            if The_Matrix[i][j] == 0:
+            if The_Matrix[i][j] <= 1*difference/11:
                 The_Matrix[i][j] = ord('@')
-            elif The_Matrix[i][j] == 25:
+            elif The_Matrix[i][j] <= 2*difference/11:
                 The_Matrix[i][j] = ord('%')
-            elif The_Matrix[i][j] == 50:
+            elif The_Matrix[i][j] <= 3*difference/11:
                 The_Matrix[i][j] = ord('#')
-            elif The_Matrix[i][j] == 75:
+            elif The_Matrix[i][j] <= 4*difference/11:
                 The_Matrix[i][j] = ord('+')
-            elif The_Matrix[i][j] == 100:
+            elif The_Matrix[i][j] <= 5*difference/11:
                 The_Matrix[i][j] = ord('=')
-            elif The_Matrix[i][j] == 125:
+            elif The_Matrix[i][j] <= 6*difference/11:
                 The_Matrix[i][j] = ord('~')
-            elif The_Matrix[i][j] == 150:
+            elif The_Matrix[i][j] <= 7*difference/11:
                 The_Matrix[i][j] = ord(':')
-            elif The_Matrix[i][j] == 175:
-                The_Matrix[i][j] = ord('~')
-            elif The_Matrix[i][j] == 200:
+            elif The_Matrix[i][j] <= 8*difference/11:
+                The_Matrix[i][j] = ord('-')
+            elif The_Matrix[i][j] <= 9*difference/11:
                 The_Matrix[i][j] = ord(',')
-            elif The_Matrix[i][j] == 225:
+            elif The_Matrix[i][j] <= 10*difference/11:
                 The_Matrix[i][j] = ord('.')
-            elif The_Matrix[i][j] == 250:
+            elif The_Matrix[i][j] <= 11*difference/11:
                 The_Matrix[i][j] = ord(' ')
 
     return The_Matrix
@@ -98,11 +94,7 @@ def print_ascii_image(matrix):
 for ii in img_xrange:
     for jj in img_yrange:
         The_Matrix[ii][jj] = Average_Colour(ii, jj)
-        The_Matrix[ii][jj] = Reducing_Pallet(The_Matrix[ii][jj])
 
 The_Matrix = Ascii(The_Matrix, img_xrange, img_yrange)
 
 print_ascii_image(The_Matrix)
-
-#print(The_Matrix)
-#img.save(os.path.join(file_path, 'tester_update.png'))
