@@ -27,12 +27,12 @@ The_Matrix = [[0 for i in range(img_width)] for j in range(img_height)]
 #Getting the Average RGB Values for each Section
 def Average_Colour(pixel_x, pixel_y):
     colour_array_red = []
-    colour_array_green = []
     colour_array_blue = []
+    colour_array_green = []
 
-    for ii in range(pixel_x*cell_size, pixel_x*cell_size + cell_size):
-        for jj in range(pixel_y*cell_size, pixel_y*cell_size + cell_size):
-            colour = pixel[ii, jj]
+    for i in range(pixel_x*cell_size, pixel_x*cell_size + cell_size):
+        for j in range(pixel_y*cell_size, pixel_y*cell_size + cell_size):
+            colour = pixel[i, j]
             colour_array_red.append(colour[0])
             colour_array_green.append(colour[1])
             colour_array_blue.append(colour[2])
@@ -77,7 +77,6 @@ def Ascii(The_Matrix, img_xrange, img_yrange):
                 The_Matrix[i][j] = ord('.')
             elif The_Matrix[i][j] <= 11*difference/11:
                 The_Matrix[i][j] = ord(' ')
-
     return The_Matrix
 
 def print_ascii_image(matrix):
@@ -91,9 +90,9 @@ def print_ascii_image(matrix):
                 print(chr(row[i]))
 
 #The Loops
-for ii in img_xrange:
-    for jj in img_yrange:
-        The_Matrix[ii][jj] = Average_Colour(ii, jj)
+for i in img_xrange:
+    for j in img_yrange:
+        The_Matrix[i][j] = Average_Colour(i, j)
 
 The_Matrix = Ascii(The_Matrix, img_xrange, img_yrange)
 
