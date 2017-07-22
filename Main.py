@@ -3,7 +3,7 @@ import os
 
 file_path = os.path.join(os.path.abspath(os.path.dirname(__file__)), 'Image')
 
-img = Image.open(os.path.join(file_path, 'tester.jpg'))
+img = Image.open(os.path.join(file_path, 'tester1.jpg'))
 pixel = img.load()
 
 (img_width, img_height) = img.size
@@ -55,28 +55,29 @@ def Ascii(The_Matrix, img_xrange, img_yrange):
 
     for i in img_xrange:
         for j in img_yrange:
-            if The_Matrix[i][j] <= 1*difference/11:
-                The_Matrix[i][j] = ord('@')
-            elif The_Matrix[i][j] <= 2*difference/11:
-                The_Matrix[i][j] = ord('%')
-            elif The_Matrix[i][j] <= 3*difference/11:
-                The_Matrix[i][j] = ord('#')
-            elif The_Matrix[i][j] <= 4*difference/11:
-                The_Matrix[i][j] = ord('+')
-            elif The_Matrix[i][j] <= 5*difference/11:
-                The_Matrix[i][j] = ord('=')
-            elif The_Matrix[i][j] <= 6*difference/11:
-                The_Matrix[i][j] = ord('~')
-            elif The_Matrix[i][j] <= 7*difference/11:
-                The_Matrix[i][j] = ord(':')
-            elif The_Matrix[i][j] <= 8*difference/11:
-                The_Matrix[i][j] = ord('-')
-            elif The_Matrix[i][j] <= 9*difference/11:
-                The_Matrix[i][j] = ord(',')
-            elif The_Matrix[i][j] <= 10*difference/11:
-                The_Matrix[i][j] = ord('.')
-            elif The_Matrix[i][j] <= 11*difference/11:
-                The_Matrix[i][j] = ord(' ')
+            if The_Matrix[j][i] <= 1*difference/11:
+                The_Matrix[j][i] = ord('@')
+            elif The_Matrix[j][i] <= 2*difference/11:
+                The_Matrix[j][i] = ord('%')
+            elif The_Matrix[j][i] <= 3*difference/11:
+                The_Matrix[j][i] = ord('#')
+            elif The_Matrix[j][i] <= 4*difference/11:
+                The_Matrix[j][i] = ord('+')
+            elif The_Matrix[j][i] <= 5*difference/11:
+                The_Matrix[j][i] = ord('=')
+            elif The_Matrix[j][i] <= 6*difference/11:
+                The_Matrix[j][i] = ord('~')
+            elif The_Matrix[j][i] <= 7*difference/11:
+                The_Matrix[j][i] = ord(':')
+            elif The_Matrix[j][i] <= 8*difference/11:
+                The_Matrix[j][i] = ord('-')
+            elif The_Matrix[j][i] <= 9*difference/11:
+                The_Matrix[j][i] = ord(',')
+            elif The_Matrix[j][i] <= 10*difference/11:
+                The_Matrix[j][i] = ord('.')
+            else:
+                The_Matrix[j][i] = ord(' ')
+
     return The_Matrix
 
 def print_ascii_image(matrix):
@@ -92,7 +93,7 @@ def print_ascii_image(matrix):
 #The Loops
 for i in img_xrange:
     for j in img_yrange:
-        The_Matrix[i][j] = Average_Colour(i, j)
+        The_Matrix[j][i] = Average_Colour(i, j)
 
 The_Matrix = Ascii(The_Matrix, img_xrange, img_yrange)
 
