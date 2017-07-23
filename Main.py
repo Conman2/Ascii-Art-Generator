@@ -3,47 +3,26 @@ import os
 
 file_path = os.path.join(os.path.abspath(os.path.dirname(__file__)), 'Image')
 
-img = Image.open(os.path.join(file_path, 'tester1.jpg'))
+img = Image.open(os.path.join(file_path, 'hitch.jpg')).convert('L')
 pixel = img.load()
 
 (img_width, img_height) = img.size
-cell_size = 1
 
-if img_width > 900 or img_height > 900:
+if img_width > 500 or img_height > 500:
     print('This image is too large, for your own good it will not be converted')
-    quit() 
-
-#Resizing the Image
-crop_x = int((img_width//cell_size)*cell_size)
-crop_y = int((img_height//cell_size)*cell_size)
-img.crop = ((0, 0, crop_x, crop_y))
-
-#Updating the Images Size
-img_width = crop_x
-img_height = crop_y
+    quit()
 
 #How many Tiles can the Image Hold
-img_xrange = range(0, img_width, cell_size)
-img_yrange = range(0, img_height, cell_size)
+img_xrange = range(0, img_width,  1)
+img_yrange = range(0, img_height - 1, 2)
 
-The_Matrix = [[0 for i in range(img_width)] for j in range(img_height)]
+The_Matrix = [[0 for i in img_xrange] for j in img_yrange]
 
-#Getting the Average RGB Values for each Section
 def Average_Colour(pixel_x, pixel_y):
-    colour_array_red = []
-    colour_array_blue = []
-    colour_array_green = []
-
-    for i in range(pixel_x*cell_size, pixel_x*cell_size + cell_size):
-        for j in range(pixel_y*cell_size, pixel_y*cell_size + cell_size):
-            colour = pixel[i, j]
-            colour_array_red.append(colour[0])
-            colour_array_green.append(colour[1])
-            colour_array_blue.append(colour[2])
-
-    avg_colour = (int((sum(colour_array_red)/len(colour_array_red))*0.299) + int((sum(colour_array_green)/len(colour_array_green))*0.587) + int((sum(colour_array_blue)/len(colour_array_blue))*0.114))
-
-    return avg_colour
+    pixel_1 = pixel[pixel_x, pixel_y]
+    pixel_2 = pixel[pixel_x, pixel_y +1]
+    avg_colour = (pixel_1 + pixel_2)/2
+    return(avg_colour)
 
 # Converts Grayscale to Ascii
 def Ascii(The_Matrix, img_xrange, img_yrange):
@@ -59,29 +38,28 @@ def Ascii(The_Matrix, img_xrange, img_yrange):
 
     for i in img_xrange:
         for j in img_yrange:
-            if The_Matrix[j][i] <= 1*difference/11:
-                The_Matrix[j][i] = ord('@')
-            elif The_Matrix[j][i] <= 2*difference/11:
-                The_Matrix[j][i] = ord('%')
-            elif The_Matrix[j][i] <= 3*difference/11:
-                The_Matrix[j][i] = ord('#')
-            elif The_Matrix[j][i] <= 4*difference/11:
-                The_Matrix[j][i] = ord('+')
-            elif The_Matrix[j][i] <= 5*difference/11:
-                The_Matrix[j][i] = ord('=')
-            elif The_Matrix[j][i] <= 6*difference/11:
-                The_Matrix[j][i] = ord('~')
-            elif The_Matrix[j][i] <= 7*difference/11:
-                The_Matrix[j][i] = ord(':')
-            elif The_Matrix[j][i] <= 8*difference/11:
-                The_Matrix[j][i] = ord('-')
-            elif The_Matrix[j][i] <= 9*difference/11:
-                The_Matrix[j][i] = ord(',')
-            elif The_Matrix[j][i] <= 10*difference/11:
-                The_Matrix[j][i] = ord('.')
+            if The_Matrix[int(j/2)][i] <= 1*difference/11:
+                The_Matrix[int(j/2)][i] = ord('@')
+            elif The_Matrix[int(j/2)][i] <= 2*difference/11:
+                The_Matrix[int(j/2)][i] = ord('%')
+            elif The_Matrix[int(j/2)][i] <= 3*difference/11:
+                The_Matrix[int(j/2)][i] = ord('#')
+            elif The_Matrix[int(j/2)][i] <= 4*difference/11:
+                The_Matrix[int(j/2)][i] = ord('+')
+            elif The_Matrix[int(j/2)][i] <= 5*difference/11:
+                The_Matrix[int(j/2)][i] = ord('=')
+            elif The_Matrix[int(j/2)][i] <= 6*difference/11:
+                The_Matrix[int(j/2)][i] = ord('~')
+            elif The_Matrix[int(j/2)][i] <= 7*difference/11:
+                The_Matrix[int(j/2)][i] = ord(':')
+            elif The_Matrix[int(j/2)][i] <= 8*difference/11:
+                The_Matrix[int(j/2)][i] = ord('-')
+            elif The_Matrix[int(j/2)][i] <= 9*difference/11:
+                The_Matrix[int(j/2)][i] = ord(',')
+            elif The_Matrix[int(j/2)][i] <= 10*difference/11:
+                The_Matrix[int(j/2)][i] = ord('.')
             else:
-                The_Matrix[j][i] = ord(' ')
-
+                The_Matrix[int(j/2)][i] = ord(' ')
     return The_Matrix
 
 def print_ascii_image(matrix):
@@ -97,8 +75,9 @@ def print_ascii_image(matrix):
 #The Loops
 for i in img_xrange:
     for j in img_yrange:
-        The_Matrix[j][i] = Average_Colour(i, j)
+        The_Matrix[int(j/2)][i] = Average_Colour(i, j)
 
 The_Matrix = Ascii(The_Matrix, img_xrange, img_yrange)
 
 print_ascii_image(The_Matrix)
+
