@@ -9,6 +9,10 @@ pixel = img.load()
 (img_width, img_height) = img.size
 cell_size = 1
 
+if img_width > 900 or img_height > 900:
+    print('This image is too large, for your own good it will not be converted')
+    quit() 
+
 #Resizing the Image
 crop_x = int((img_width//cell_size)*cell_size)
 crop_y = int((img_height//cell_size)*cell_size)
