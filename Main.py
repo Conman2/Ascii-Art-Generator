@@ -2,7 +2,7 @@ from PIL import Image
 import os
 
 file_path = os.path.join(os.path.abspath(os.path.dirname(__file__)), 'Image')
-img = Image.open(os.path.join(file_path, 'tester1.jpg')).convert('L')
+img = Image.open(os.path.join(file_path, 'kubrick.jpg')).convert('L')
 pixel = img.load()
 
 (img_width, img_height) = img.size
