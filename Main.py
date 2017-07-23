@@ -8,7 +8,7 @@ pixel = img.load()
 
 (img_width, img_height) = img.size
 
-if img_width > 500 or img_height > 500:
+if img_width > 700 or img_height > 700:
     print('This image is too large, for your own good it will not be converted')
     quit()
 
