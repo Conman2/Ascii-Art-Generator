@@ -2,8 +2,7 @@ from PIL import Image
 import os
 
 file_path = os.path.join(os.path.abspath(os.path.dirname(__file__)), 'Image')
-
-img = Image.open(os.path.join(file_path, 'hitch.jpg')).convert('L')
+img = Image.open(os.path.join(file_path, 'tester1.jpg')).convert('L')
 pixel = img.load()
 
 (img_width, img_height) = img.size
@@ -12,13 +11,13 @@ if img_width > 700 or img_height > 700:
     print('This image is too large, for your own good it will not be converted')
     quit()
 
-#How many Tiles can the Image Hold
 img_xrange = range(0, img_width,  1)
 img_yrange = range(0, img_height - 1, 2)
 
 The_Matrix = [[0 for i in img_xrange] for j in img_yrange]
 
 def Average_Colour(pixel_x, pixel_y):
+    ''' Takes the average grayscale value between two vertical pixels '''
     pixel_1 = pixel[pixel_x, pixel_y]
     pixel_2 = pixel[pixel_x, pixel_y +1]
     avg_colour = (pixel_1 + pixel_2)/2
@@ -26,12 +25,7 @@ def Average_Colour(pixel_x, pixel_y):
 
 # Converts Grayscale to Ascii
 def Ascii(The_Matrix, img_xrange, img_yrange):
-    """ Takes a 2D array, an x range for the image width, and y range for
-       the image height, and returns a mutated 2D list, with
-       original values replaced by ASCII values of characters.
-       It now it standardises the colours so the full range of ASCII characters
-       are always used """
-
+    ''' Converts a Matrix of grayscale values into a Matrix of Ascii characters, standerdizing the colour range in the process '''
     lowest  = max(max(The_Matrix))
     highest = min(min(The_Matrix))
     difference = lowest - highest
@@ -63,8 +57,7 @@ def Ascii(The_Matrix, img_xrange, img_yrange):
     return The_Matrix
 
 def print_ascii_image(matrix):
-    """Takes a 2D matrix of ASCII values as input and prints out an image
-       of ASCII characters based on matrix values."""
+    """Takes a 2D matrix of ASCII values as input and prints out an image of ASCII characters based on matrix values."""
     for row in matrix:
         for i in range(len(row)):
             if (i != len(row)-1):
@@ -78,6 +71,4 @@ for i in img_xrange:
         The_Matrix[int(j/2)][i] = Average_Colour(i, j)
 
 The_Matrix = Ascii(The_Matrix, img_xrange, img_yrange)
-
 print_ascii_image(The_Matrix)
-
