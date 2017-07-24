@@ -13,3 +13,4 @@ We have have had the best results veiwing the resultant text file in notepad and
 # Example
 
 ![Christopher Hitchens as Ascii Art](http://i.imgur.com/quOV5al.png)
+*Christopher Hitchens, orginal size was 300x300 
