@@ -10,11 +10,7 @@ To operate simply place the image you wish to convert into the folder labeled "I
                                   
 # Recommendations:
 
-We recommend that the files you convert be in the format of either .jpg or .png as these are post supported by the Pillow libary, but other photo formats are also supported. These can be found at:
-[here][Pillow_supported_formats]
-[Pillow_supported_formats]: http://pillow.readthedocs.io/en/3.4.x/handbook/image-file-formats.html
-
-http://pillow.readthedocs.io/en/3.4.x/handbook/image-file-formats.html
+We recommend that the files you convert be in the format of either .jpg or .png as these are post supported by the Pillow libary, but other photo formats are also supported. These can be found <a href="http://pillow.readthedocs.io/en/3.4.x/handbook/image-file-formats.html">Here</a>:
 
 This Software converts an image into a text file of ascii art. Currently it does a 1:2 conversion between pixels and ascii characters so it is recommened not to use this on images much larger than ~500x500 pixels as it becomes unpractical to view such a large text file even on the smallest font settings. 
 
