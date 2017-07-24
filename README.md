@@ -8,4 +8,4 @@ To operate simply place the image you wish to convert into the folder labeled "I
                           
 We have have had the best results veiwing the resultant text file in notepad and setting the font size to either with a font size of 4 or 5 depending on the size of the orignal image. One thing to be aware is that there is only a limited palette of ascii symbols used so in areas of similar colours there may not be any noteable detail. We found the best result (for faces) arer with a black background and good lighting on the face. I hope you enjoy making some wicked looking ascii art!
 
-![](http://i.imgur.com/WkdxSTL.png)
+![Example Image](http://imgur.com/a/qf16X)
