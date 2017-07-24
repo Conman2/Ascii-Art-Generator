@@ -1,10 +1,16 @@
 # How to use:
 
+This programm relays on the use of the Pillow libary (also known as PIL) as it uses it to acess the data of the photos. If you have not already done so you must install this libary in order for the code to work. This can be done via pip such as:
+                                   
+                                                pip install Pillow 
+
 To operate simply place the image you wish to convert into the folder labeled "Image". After you have done this adjust the os file path on in the code to match the name of the image you placed in the "Image" folder. After this you'll need to run the code and export the result as a .txt document such as:
 
-                                   python Main.py\location\here > example.txt 
+                                    python Main.py\location\here > example.txt 
                                   
 # Recommendations:
+
+We recommend that the files you convert be in the format of either jpg or png as these are post supported by the Pillow libary, but other photo formats are also supported. These can be found at http://pillow.readthedocs.io/en/3.4.x/handbook/image-file-formats.html
 
 This Software converts an image into a text file of ascii art. Currently it does a 1:2 conversion between pixels and ascii characters so it is recommened not to use this on images much larger than ~500x500 pixels as it becomes unpractical to view such a large text file even on the smallest font settings. 
 
