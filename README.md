@@ -16,4 +16,5 @@ One thing to be aware is that there is only a limited palette of ascii symbols u
 # Example:
 
 ![Christopher Hitchens as Ascii Art](http://i.imgur.com/quOV5al.png)
+
 *Christopher Hitchens, orginal size was 300x300* 
