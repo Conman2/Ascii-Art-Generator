@@ -2,7 +2,7 @@
 
 To operate simply place the image you wish to convert into the folder labeled "Image". After you have done this adjust the os file path on in the code to match the name of the image you placed in the "Image" folder. After this you'll need to run the code and export the result as a .txt document such as:
 
-                                   python Main.py_location_here > text_files_name.txt 
+                                   python Main.py\location\here > example.txt 
                                   
 # Recommendations:
 
@@ -15,6 +15,6 @@ One thing to be aware is that there is only a limited palette of ascii symbols u
 
 # Example:
 
-![Christopher Hitchens as Ascii Art](http://i.imgur.com/quOV5al.png)
+![Christopher Hitchens](http://i.imgur.com/quOV5al.png)
 
-*Christopher Hitchens, Available in the Repository as example.txt* 
+*Christopher Hitchens. Available in the repository as example.txt* 
